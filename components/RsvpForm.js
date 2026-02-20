@@ -53,7 +53,7 @@ export default function RsvpForm() {
         className="text-center p-10 rounded-2xl"
         style={{ background: "#1A1A1A", border: "2px solid #F20F62" }}
       >
-        <audio ref={audioRef} src="/musica.mp3" preload="auto" />
+        <audio ref={audioRef} src="/musica.mp3" preload="auto" autoPlay />
         <p className="text-5xl mb-4">🎶🥂</p>
         <p className="font-black text-2xl uppercase tracking-widest" style={{ color: "#F20F62" }}>
           ¡Nos vemos ahí!
