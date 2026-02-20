@@ -4,11 +4,9 @@ export async function POST(request) {
   try {
     const { nombre, asistencia } = await request.json();
 
-    const text = `
-🎉 *NUEVA CONFIRMACIÓN* 🎉
+    const text = `🎉 *NUEVA CONFIRMACIÓN* 🎉
 👤 *Nombre:* ${nombre}
-✅ *Viene:* ${asistencia ? 'SI ✅' : 'NO ❌'}
-    `;
+✅ *Viene:* ${asistencia ? 'SI ✅' : 'NO ❌'}`;
 
     console.log("👉 Intentando conectar con Telegram...");
 
