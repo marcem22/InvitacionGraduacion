@@ -20,7 +20,7 @@ export default function AudioButton() {
 
   return (
     <>
-      <audio ref={audioRef} src="/musica.mp3" preload="auto" />
+      <audio ref={audioRef} src="/recibo.mp3" preload="auto" />
       <button
         onClick={toggle}
         style={{
