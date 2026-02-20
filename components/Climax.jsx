@@ -1,6 +1,6 @@
 "use client";
-import { useRef } from "react";
-import { motion } from "framer-motion";
+import { useRef, useEffect } from "react";
+import { motion, useInView } from "framer-motion";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 40 },
@@ -17,24 +17,31 @@ const scaleIn = {
 
 export default function Climax() {
   const audioRef = useRef(null);
+  const sectionRef = useRef(null);
+  const played = useRef(false);
+  const isInView = useInView(sectionRef, { once: true, margin: "-80px" });
 
-  const handleAnimationStart = () => {
-    if (audioRef.current) {
+  useEffect(() => {
+    if (isInView && !played.current && audioRef.current) {
+      played.current = true;
       audioRef.current.currentTime = 0;
       audioRef.current.volume = 0.6;
       audioRef.current.play().catch(() => {});
     }
-  };
+  }, [isInView]);
 
   return (
-    <section className="min-h-screen flex items-center justify-center px-6 py-24 relative overflow-hidden" style={{ background: "#F2B988" }}>
+    <section
+      ref={sectionRef}
+      className="min-h-screen flex items-center justify-center px-6 py-24 relative overflow-hidden"
+      style={{ background: "#F2B988" }}
+    >
       <audio ref={audioRef} src="/recibo.mp3" preload="auto" />
       <motion.div
         variants={stagger}
         initial="hidden"
         whileInView="show"
         viewport={{ once: true, margin: "-80px" }}
-        onAnimationStart={handleAnimationStart}
         className="max-w-2xl w-full flex flex-col md:flex-row items-center gap-14"
       >
         <motion.div
