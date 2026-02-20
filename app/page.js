@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import RsvpForm from '../components/RsvpForm';
 import TarotFiesta from '../components/TarotFiesta';
 import Climax from '../components/Climax';
+import AudioButton from '../components/AudioButton';
 
 const fadeUp = {
   hidden: { opacity: 0, y: 40 },
@@ -29,7 +30,7 @@ const scaleIn = {
 export default function Home() {
   return (
     <main className="font-[Montserrat]" style={{ background: "#F2B988", color: "#0D0D0F" }}>
-
+      <AudioButton />
       {/* 1. HERO */}
       <section className="min-h-screen flex items-center justify-center px-6 py-24 relative overflow-hidden" style={{ background: "#F2B988" }}>
 
@@ -375,13 +376,13 @@ export default function Home() {
             style={{ height: "260px", border: "3px solid #F20F62" }}
           >
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d1246.9965090143623!2d-68.52639175916694!3d-31.484532462090254!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses-419!2sar!4v1771556542287!5m2!1ses-419!2sar"
-              className="w-full h-full transition-all duration-700"
-              style={{ border: 0 }}
-              allowFullScreen=""
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-            />
+            src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d1244.95125546572!2d-68.52760266907705!3d-31.48515976699302!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses-419!2sar!4v1771567760270!5m2!1ses-419!2sar"
+            className="w-full h-full transition-all duration-700"
+            style={{ border: 0 }}
+            allowFullScreen=""
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+          />
           </motion.div>
         </motion.div>
       </section>
