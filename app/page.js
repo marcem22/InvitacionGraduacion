@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 import RsvpForm from '../components/RsvpForm';
 import TarotFiesta from '../components/TarotFiesta';
 import Climax from '../components/Climax';
-import AudioButton from '../components/AudioButton';
 
 const fadeUp = {
   hidden: { opacity: 0, y: 40 },
@@ -30,10 +29,9 @@ const scaleIn = {
 export default function Home() {
   return (
     <main className="font-[Montserrat]" style={{ background: "#F2B988", color: "#0D0D0F" }}>
-      <AudioButton />
+
       {/* 1. HERO */}
       <section className="min-h-screen flex items-center justify-center px-6 py-24 relative overflow-hidden" style={{ background: "#F2B988" }}>
-
         <motion.div
           initial={{ opacity: 0, x: 60 }}
           animate={{ opacity: 0.07, x: 0 }}
@@ -52,9 +50,7 @@ export default function Home() {
           className="absolute left-0 top-0 bottom-0 w-1 bg-brand-pink"
         />
 
-        {/* HERO: una columna en mobile, dos en desktop */}
         <div className="max-w-2xl w-full flex flex-col-reverse md:grid md:grid-cols-[1fr_210px] gap-10 items-center relative z-10">
-
           <motion.div variants={stagger} initial="hidden" animate="show" className="flex flex-col gap-6">
             <motion.p variants={fadeUp} className="text-xs font-bold tracking-[0.25em] uppercase" style={{ color: "#A64D2D" }}>
               Una historia de supervivencia
@@ -86,7 +82,6 @@ export default function Home() {
             </motion.p>
           </motion.div>
 
-          {/* Polaroid centrada en mobile */}
           <motion.div variants={fadeRight} initial="hidden" animate="show" className="flex justify-center">
             <motion.div
               initial={{ rotate: -4 }}
@@ -129,7 +124,6 @@ export default function Home() {
 
       {/* 2. EL NUDO */}
       <section className="min-h-screen flex items-center justify-center px-6 py-24 relative overflow-hidden" style={{ background: "#F2C879" }}>
-
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 0.06 }}
@@ -155,10 +149,7 @@ export default function Home() {
             </h2>
           </motion.div>
 
-          {/* SECCIÓN 2: una columna en mobile, dos en desktop */}
           <div className="flex flex-col md:grid md:grid-cols-[170px_1fr] gap-8 items-start">
-
-            {/* Polaroid centrada en mobile */}
             <motion.div
               variants={fadeLeft}
               whileHover={{ rotate: 0 }}
@@ -218,7 +209,7 @@ export default function Home() {
         </motion.div>
       </section>
 
-      {/* 3. CLÍMAX — componente separado para el useRef del audio */}
+      {/* 3. CLÍMAX */}
       <Climax />
 
       {/* 4. DONACIONES */}
@@ -370,19 +361,27 @@ export default function Home() {
             ))}
           </motion.div>
 
+          {/* MAPA — link directo a Google Maps */}
           <motion.div
             variants={scaleIn}
             className="w-full rounded-2xl overflow-hidden"
             style={{ height: "260px", border: "3px solid #F20F62" }}
           >
-            <iframe
-            src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d1244.95125546572!2d-68.52760266907705!3d-31.48515976699302!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses-419!2sar!4v1771567760270!5m2!1ses-419!2sar"
-            className="w-full h-full transition-all duration-700"
-            style={{ border: 0 }}
-            allowFullScreen=""
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-          />
+            <a
+              href="https://www.google.com/maps?q=-31.48515976699302,-68.52760266907705"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full h-full flex flex-col items-center justify-center gap-4"
+              style={{ background: "#1A1A1A", display: "flex", textDecoration: "none", height: "100%" }}
+            >
+              <span style={{ fontSize: "48px" }}>📍</span>
+              <p className="font-black uppercase tracking-widest text-sm" style={{ color: "#F2C879" }}>
+                Ver ubicación en Google Maps
+              </p>
+              <p className="text-xs font-bold" style={{ color: "#F2B98880" }}>
+                Tocá para abrir el mapa
+              </p>
+            </a>
           </motion.div>
         </motion.div>
       </section>

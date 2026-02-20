@@ -1,9 +1,16 @@
 "use client";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 
-export default function AudioButton() {
+export default function AudioButton({ show }) {
   const audioRef = useRef(null);
   const [playing, setPlaying] = useState(false);
+
+  useEffect(() => {
+    if (!show && playing && audioRef.current) {
+      audioRef.current.pause();
+      setPlaying(false);
+    }
+  }, [show]);
 
   const toggle = () => {
     if (!audioRef.current) return;
@@ -17,6 +24,8 @@ export default function AudioButton() {
       setPlaying(true);
     }
   };
+
+  if (!show) return null;
 
   return (
     <>
