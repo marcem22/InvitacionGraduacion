@@ -1,27 +1,23 @@
-// app/api/rsvp/route.js
 import { NextResponse } from 'next/server';
 
 export async function POST(request) {
   try {
-    const { nombre, asistencia, mensaje } = await request.json();
+    const { nombre, asistencia } = await request.json();
 
     const text = `
 🎉 *NUEVA CONFIRMACIÓN* 🎉
 👤 *Nombre:* ${nombre}
-✅ *Viene:* ${asistencia ? 'SI' : 'NO'}
-💬 *Mensaje:* ${mensaje || '-'}
+✅ *Viene:* ${asistencia ? 'SI ✅' : 'NO ❌'}
     `;
 
     console.log("👉 Intentando conectar con Telegram...");
 
-    // 1. Apuntamos directo a la variable de entorno del token
     const url = `https://api.telegram.org/bot${process.env.TELEGRAM_BOT_TOKEN}/sendMessage`;
 
     const telegramResponse = await fetch(url, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        // 2. Apuntamos directo a la variable de entorno del chat ID
         chat_id: process.env.TELEGRAM_CHAT_ID,
         text: text,
         parse_mode: 'Markdown',
