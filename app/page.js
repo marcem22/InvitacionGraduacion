@@ -212,8 +212,6 @@ export default function Home() {
       {/* 3. CLÍMAX */}
       <Climax />
 
-   
-
       {/* 5. TAROT */}
       <section className="min-h-screen flex items-center justify-center px-6 py-24" style={{ background: "#F2C879" }}>
         <motion.div
@@ -272,7 +270,6 @@ export default function Home() {
           <motion.div variants={stagger} className="flex flex-col gap-3">
             {[
               { icon: "📅", label: "Cuándo", value: "Miércoles 25 de Febrero, 21:00 hs", accent: "#F20F62" },
-              { icon: "🍖", label: "Menú", value: "Pernil con salsas, empanadas y pizza a la parrilla. Sí, todo eso.", accent: "#A64D2D" },
               { icon: "🧊", label: "¿Qué llevás?", value: "Solo tu bebida favorita. El hielo y la comida corren por mi cuenta.", accent: "#0D0D0F" },
             ].map((item, i) => (
               <motion.div
@@ -294,7 +291,7 @@ export default function Home() {
             ))}
           </motion.div>
 
-          {/* MAPA — link directo a Google Maps */}
+          {/* MAPA */}
           <motion.div
             variants={scaleIn}
             className="w-full rounded-2xl overflow-hidden"
@@ -350,7 +347,7 @@ export default function Home() {
         className="py-8 text-center text-sm font-black uppercase tracking-widest"
         style={{ borderTop: "2px solid #F20F62", background: "#0D0D0F", color: "#F2C879" }}
       >
-        Con amor y sin dormir desde 2022 😄 · Marcela 2026
+        Con amor y sin dormir desde 2022 😄 · Marce
       </footer>
     </main>
   );

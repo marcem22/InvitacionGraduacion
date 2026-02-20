@@ -1,5 +1,5 @@
 "use client";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import AudioButton from "./AudioButton";
 
@@ -35,20 +35,58 @@ export default function Climax() {
           viewport={{ once: true, margin: "-80px" }}
           className="max-w-2xl w-full flex flex-col md:flex-row items-center gap-14"
         >
-          <motion.div
-            variants={scaleIn}
-            animate={{ y: [-8, 8, -8] }}
-            transition={{ y: { repeat: Infinity, duration: 3, ease: "easeInOut" } }}
-            className="mx-auto md:mx-0 shrink-0"
-            style={{
-              background: "#fff",
-              padding: "10px 10px 44px 10px",
-              boxShadow: "0 0 0 3px #F20F62, 10px 10px 0px #A64D2D",
-              width: "190px",
-            }}
-          >
-            <img src="/partyBitch.jpeg" alt="Graduada" className="w-full block" />
-          </motion.div>
+          {/* DOS POLAROIDS */}
+          <div className="flex flex-row gap-4 mx-auto md:mx-0 shrink-0">
+
+            {/* Polaroid 1 — partyBitch */}
+            <motion.div
+              variants={scaleIn}
+              animate={{ y: [-8, 8, -8] }}
+              transition={{ y: { repeat: Infinity, duration: 3, ease: "easeInOut" } }}
+              style={{
+                background: "#fff",
+                padding: "10px 10px 44px 10px",
+                boxShadow: "0 0 0 3px #F20F62, 10px 10px 0px #A64D2D",
+                width: "140px",
+                rotate: "-4deg",
+              }}
+            >
+              <div style={{ width: "100%", height: "160px", overflow: "hidden" }}>
+                <img
+                  src="/partyBitch.jpeg"
+                  alt="Graduada"
+                  style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+                />
+              </div>
+            </motion.div>
+
+            {/* Polaroid 2 — tu foto */}
+            <motion.div
+              variants={scaleIn}
+              animate={{ y: [8, -8, 8] }}
+              transition={{ y: { repeat: Infinity, duration: 3, ease: "easeInOut" } }}
+              style={{
+                background: "#fff",
+                padding: "10px 10px 44px 10px",
+                boxShadow: "0 0 0 3px #F20F62, 10px 10px 0px #A64D2D",
+                width: "140px",
+                rotate: "4deg",
+                marginTop: "20px",
+              }}
+            >
+              <div style={{ width: "100%", height: "160px", overflow: "hidden" }}>
+                <img
+                  src="/yo.jpg"
+                  alt="Yo"
+                  style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "top", display: "block" }}
+                />
+              </div>
+              <p className="text-center text-[10px] font-bold tracking-widest uppercase mt-3" style={{ color: "#A64D2D" }}>
+                ¡Lo logré!
+              </p>
+            </motion.div>
+
+          </div>
 
           <div className="flex flex-col gap-5">
             <motion.span variants={fadeUp} className="text-sm font-black tracking-widest" style={{ color: "#A64D2D" }}>
@@ -72,7 +110,7 @@ export default function Climax() {
               style={{ background: "#F20F62" }}
             >
               <span className="text-sm font-black uppercase tracking-widest" style={{ color: "#F2C879" }}>
-                Técnica en Programación Web
+                Técnica  Universitaria en Programación Web
               </span>
             </motion.div>
 

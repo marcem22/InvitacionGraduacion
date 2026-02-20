@@ -2,7 +2,7 @@
 import { useState, useRef } from "react";
 
 export default function RsvpForm() {
-  const [formData, setFormData] = useState({ nombre: "", asistencia: true, mensaje: "" });
+  const [formData, setFormData] = useState({ nombre: "", asistencia: true });
   const [status, setStatus] = useState("idle");
   const audioRef = useRef(null);
 
@@ -106,21 +106,6 @@ export default function RsvpForm() {
           <option value="si">¡Obvio que sí! Llevo sed.</option>
           <option value="no">No puedo, me pierdo la fiesta.</option>
         </select>
-      </div>
-
-      <div className="flex flex-col gap-2">
-        <label className="text-sm font-black uppercase tracking-widest" style={{ color: "#F2C879" }}>
-          Mensaje (Opcional)
-        </label>
-        <textarea
-          style={{ ...inputStyle, resize: "none" }}
-          onFocus={focusStyle}
-          onBlur={blurStyle}
-          placeholder="Prometo llevar..."
-          rows={3}
-          value={formData.mensaje}
-          onChange={(e) => setFormData({ ...formData, mensaje: e.target.value })}
-        />
       </div>
 
       <button
