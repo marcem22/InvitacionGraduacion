@@ -1,137 +1,423 @@
-// app/page.js
 "use client";
+import { useRef } from "react";
 import { motion } from "framer-motion";
 import RsvpForm from '../components/RsvpForm';
 import TarotFiesta from '../components/TarotFiesta';
+import Climax from '../components/Climax';
 
-const Section = ({ children, className }) => (
-  <motion.div
-    initial={{ opacity: 0, y: 30 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    transition={{ duration: 0.6 }}
-    viewport={{ once: true }}
-    className={`min-h-screen flex flex-col items-center justify-center p-6 md:p-12 text-center ${className}`}
-  >
-    {children}
-  </motion.div>
-);
+const fadeUp = {
+  hidden: { opacity: 0, y: 40 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.7, ease: "easeOut" } },
+};
+const stagger = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.15 } },
+};
+const fadeLeft = {
+  hidden: { opacity: 0, x: -40 },
+  show: { opacity: 1, x: 0, transition: { duration: 0.7, ease: "easeOut" } },
+};
+const fadeRight = {
+  hidden: { opacity: 0, x: 40 },
+  show: { opacity: 1, x: 0, transition: { duration: 0.7, ease: "easeOut" } },
+};
+const scaleIn = {
+  hidden: { opacity: 0, scale: 0.85 },
+  show: { opacity: 1, scale: 1, transition: { duration: 0.6, ease: "easeOut" } },
+};
 
 export default function Home() {
   return (
-    <main className="bg-black text-slate-200 overflow-x-hidden font-[Montserrat]">
-      
-      {/* 1. HERO - Sólido y pro */}
-      <Section className="bg-black relative border-b-4 border-[#FF00FF]">
-        <h1 className="text-5xl md:text-7xl font-black mb-4 tracking-tighter text-white uppercase">
-          404: Vida Social <br/>
-          <span className="text-[#FF00FF] bg-black">Not Found</span>
-        </h1>
-        {/* Imagen 1: Flork quemado */}
-        <img src="/notFound.jpeg" alt="Flork estudiando" className="w-56 h-56 object-contain my-6" />
-        <p className="text-xl md:text-2xl text-[#FF69B4] font-bold tracking-widest uppercase mt-4">
-          La historia de cómo sobreviví
-        </p>
-        <div className="mt-16 text-white font-[Space_Mono] uppercase text-sm animate-bounce">
-          [ Scroll para ejecutar ]
-        </div>
-      </Section>
+    <main className="font-[Montserrat]" style={{ background: "#F2B988", color: "#0D0D0F" }}>
 
-      {/* 2. EL NUDO - Más imágenes de Flork */}
-      <Section className="bg-[#050505]">
-        <h2 className="text-4xl md:text-5xl font-black text-white mb-12 uppercase">
-          El <span className="text-[#FF69B4]">Último</span> Boss
-        </h2>
-        
-        <div className="grid md:grid-cols-2 gap-10 max-w-5xl items-center">
-          <div className="text-left space-y-6 text-lg">
-            <p className="border-l-4 border-[#FF00FF] pl-4">Fueron litros de café y frustraciones severas.</p>
-            <p className="border-l-4 border-[#FF69B4] pl-4">Fueron errores de sintaxis a las 3 AM que me hacían cuestionar mi existencia.</p>
-            <p className="border-l-4 border-white pl-4 font-bold">Pero el <span className="text-[#FF00FF]">25 de Febrero</span>, el código compila por fin.</p>
-          </div>
-          {/* Imagen 2: Flork llorando en la PC o rompiendo teclado */}
-          <img src="/crisis.jpeg" alt="Flork PC" className="w-64 mx-auto drop-shadow-[5px_5px_0px_#FF69B4]" />
-        </div>
-      </Section>
+      {/* 1. HERO */}
+      <section className="min-h-screen flex items-center justify-center px-6 py-24 relative overflow-hidden" style={{ background: "#F2B988" }}>
 
-      {/* 3. CLÍMAX - La Graduación */}
-      <Section className="bg-black border-y-4 border-[#FF69B4]">
-        {/* Imagen 3: Flork Graduado */}
-        <motion.div animate={{ rotate: [0, -5, 5, 0] }} transition={{ repeat: Infinity, duration: 2 }}>
-          <img src="/partyBitch.jpeg" alt="Flork graduado" className="w-80 drop-shadow-[8px_8px_0px_#FF00FF]" />
+        <motion.div
+          initial={{ opacity: 0, x: 60 }}
+          animate={{ opacity: 0.07, x: 0 }}
+          transition={{ duration: 1.2, ease: "easeOut" }}
+          className="absolute -right-4 top-1/2 -translate-y-1/2 font-black leading-none select-none pointer-events-none"
+          style={{ fontSize: "28vw", color: "#F20F62" }}
+        >
+          404
         </motion.div>
-        <h2 className="text-6xl font-black mt-8 text-white tracking-tight uppercase">
-          ¡ME RECIBO!
-        </h2>
-        <p className="text-2xl mt-6 bg-[#FF00FF] text-black font-bold py-2 px-6 uppercase tracking-widest">
-          Técnica en Programación Web
-        </p>
-      </Section>
 
-      {/* 4. TAROT INTERACTIVO (NUEVO) */}
-      <Section className="bg-[#050505]">
-        <div className="max-w-3xl w-full">
-          {/* Imagen 4 (Opcional): Flork con cartas o místico */}
-          <img src="/tarot.jpeg" alt="Flork Mago" className="w-40 mx-auto mb-8" />
-          <TarotFiesta />
+        <motion.div
+          initial={{ scaleY: 0 }}
+          animate={{ scaleY: 1 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          style={{ transformOrigin: "top" }}
+          className="absolute left-0 top-0 bottom-0 w-1 bg-brand-pink"
+        />
+
+        {/* HERO: una columna en mobile, dos en desktop */}
+        <div className="max-w-2xl w-full flex flex-col-reverse md:grid md:grid-cols-[1fr_210px] gap-10 items-center relative z-10">
+
+          <motion.div variants={stagger} initial="hidden" animate="show" className="flex flex-col gap-6">
+            <motion.p variants={fadeUp} className="text-xs font-bold tracking-[0.25em] uppercase" style={{ color: "#A64D2D" }}>
+              Una historia de supervivencia
+            </motion.p>
+
+            <motion.h1
+              variants={fadeUp}
+              className="font-black leading-[0.88] tracking-tighter"
+              style={{ fontSize: "clamp(3rem, 8vw, 6rem)", color: "#0D0D0F" }}
+            >
+              <span style={{ color: "#F20F62" }}>404:</span>
+              <br />
+              <span>Vida Social</span>
+              <br />
+              <span style={{ WebkitTextStroke: "2.5px #0D0D0F", color: "transparent" }}>
+                Not Found
+              </span>
+            </motion.h1>
+
+            <motion.div variants={fadeUp} className="flex items-center gap-3">
+              <div className="h-px w-10" style={{ background: "#F20F62" }} />
+              <p className="text-base font-bold uppercase tracking-widest" style={{ color: "#F20F62" }}>
+                25 · Feb · 2026
+              </p>
+            </motion.div>
+
+            <motion.p variants={fadeUp} className="text-lg leading-relaxed max-w-xs" style={{ color: "#000000" }}>
+              Cuatro años de carrera. Cero vida social. Una PC que nunca apagué.
+            </motion.p>
+          </motion.div>
+
+          {/* Polaroid centrada en mobile */}
+          <motion.div variants={fadeRight} initial="hidden" animate="show" className="flex justify-center">
+            <motion.div
+              initial={{ rotate: -4 }}
+              animate={{ rotate: 4 }}
+              transition={{ repeat: Infinity, duration: 4, repeatType: "reverse", ease: "easeInOut" }}
+              style={{
+                background: "#fff",
+                padding: "10px 10px 44px 10px",
+                boxShadow: "6px 6px 0px #F20F62, 0 20px 40px #00000025",
+                width: "160px",
+              }}
+            >
+              <img src="/notFound.jpeg" alt="Flork" className="w-full block" />
+              <p className="text-center text-[10px] font-bold tracking-widest uppercase mt-3" style={{ color: "#A64D2D" }}>
+                Help
+              </p>
+            </motion.div>
+          </motion.div>
         </div>
-      </Section>
 
-      {/* 5. LA FIESTA - Info & Mapa */}
-      <Section className="bg-black">
-        <div className="border-4 border-[#FF00FF] bg-[#050505] p-0 rounded-none max-w-5xl w-full grid md:grid-cols-2 shadow-[12px_12px_0px_#FF69B4]">
-          
-          {/* Info */}
-          <div className="p-8 space-y-8 text-left">
-            <h3 className="text-3xl font-black text-white uppercase border-b-2 border-zinc-800 pb-4">
-              Parámetros del Evento
-            </h3>
-            
-            <div className="space-y-6 font-[Space_Mono]">
-              <div>
-                <p className="font-bold text-[#FF69B4] uppercase tracking-widest text-sm">📅 Fecha de Deploy</p>
-                <p className="text-xl text-white">Miércoles 25 de Febrero, 21:00 hs</p>
-              </div>
-              
-              <div>
-                <p className="font-bold text-[#FF69B4] uppercase tracking-widest text-sm">🍖 Menú v1.0</p>
-                <p className="text-white">Pernil con salsas, empanadas y pizza a la parrilla de madrugada.</p>
-              </div>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.2, duration: 0.6 }}
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+        >
+          <p className="text-xs font-bold tracking-[0.2em] uppercase" style={{ color: "#A64D2D" }}>
+            La historia de cómo sobreviví
+          </p>
+          <motion.p
+            animate={{ y: [0, 8, 0] }}
+            transition={{ repeat: Infinity, duration: 1.4, ease: "easeInOut" }}
+            className="text-base font-black"
+            style={{ color: "#F20F62" }}
+          >
+            ↓
+          </motion.p>
+        </motion.div>
+      </section>
 
-              <div>
-                <p className="font-bold text-[#FF69B4] uppercase tracking-widest text-sm">🧊 Protocolo Hielerita</p>
-                <p className="text-white">La comida y el hielo corren por mi cuenta. Vos traé lo que quieras tomar.</p>
-              </div>
+      {/* 2. EL NUDO */}
+      <section className="min-h-screen flex items-center justify-center px-6 py-24 relative overflow-hidden" style={{ background: "#F2C879" }}>
+
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 0.06 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1 }}
+          className="absolute left-0 top-1/2 -translate-y-1/2 font-black leading-none select-none pointer-events-none uppercase"
+          style={{ fontSize: "22vw", color: "#F20F62" }}
+        >
+          BUG
+        </motion.div>
+
+        <motion.div
+          variants={stagger}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: "-80px" }}
+          className="max-w-2xl w-full flex flex-col gap-10 relative z-10"
+        >
+          <motion.div variants={fadeUp} className="flex items-center gap-4">
+            <span className="text-sm font-black tracking-widest" style={{ color: "#F20F62" }}>02 —</span>
+            <h2 className="font-black leading-tight" style={{ fontSize: "clamp(2rem, 5vw, 3.5rem)", color: "#0D0D0F" }}>
+              Casi <span style={{ color: "#F20F62" }}>me</span> Rindo
+            </h2>
+          </motion.div>
+
+          {/* SECCIÓN 2: una columna en mobile, dos en desktop */}
+          <div className="flex flex-col md:grid md:grid-cols-[170px_1fr] gap-8 items-start">
+
+            {/* Polaroid centrada en mobile */}
+            <motion.div
+              variants={fadeLeft}
+              whileHover={{ rotate: 0 }}
+              initial={{ rotate: -3 }}
+              transition={{ duration: 0.4 }}
+              className="mx-auto md:mx-0"
+              style={{
+                background: "#fff",
+                padding: "8px 8px 36px 8px",
+                boxShadow: "5px 5px 0px #F20F62",
+                width: "160px",
+              }}
+            >
+              <img src="/crisis.jpeg" alt="Crisis" className="w-full block" />
+            </motion.div>
+
+            <motion.div variants={stagger} className="space-y-5">
+              {[
+                { color: "#F20F62", text: "Fueron noches sin dormir y fechas límite imposibles." },
+                { color: "#A64D2D", text: "Bueno... a veces también cerveza." },
+                { color: "#0D0D0F", text: "Y el", highlight: "25 de Febrero", end: "... hay que festejar algo importante. 👇", bold: true },
+              ].map((item, i) => (
+                <motion.div key={i} variants={fadeUp} className="flex gap-3 items-start">
+                  <div className="w-1 rounded-full shrink-0 mt-2 self-stretch" style={{ background: item.color, minHeight: "16px" }} />
+                  <p className="text-lg leading-relaxed" style={{ color: "#0D0D0F", fontWeight: item.bold ? 800 : 400 }}>
+                    {item.text}{" "}
+                    {item.highlight && <span style={{ color: "#F20F62" }}>{item.highlight}</span>}
+                    {item.end}
+                  </p>
+                </motion.div>
+              ))}
+            </motion.div>
+          </div>
+
+          <motion.div
+            variants={fadeUp}
+            className="grid grid-cols-3 gap-px rounded-2xl overflow-hidden"
+            style={{ background: "#F20F6220" }}
+          >
+            {[
+              { n: "∞", label: "Noches sin dormir" },
+              { n: "3AM", label: "Hora favorita" },
+              { n: "1", label: "Que salió bien" },
+            ].map((s, i) => (
+              <motion.div
+                key={i}
+                whileHover={{ scale: 1.04 }}
+                transition={{ duration: 0.2 }}
+                className="text-center py-6 px-4"
+                style={{ background: "#F2C879" }}
+              >
+                <p className="text-4xl font-black" style={{ color: "#F20F62" }}>{s.n}</p>
+                <p className="text-xs uppercase tracking-wider mt-2 font-bold" style={{ color: "#A64D2D" }}>{s.label}</p>
+              </motion.div>
+            ))}
+          </motion.div>
+        </motion.div>
+      </section>
+
+      {/* 3. CLÍMAX — componente separado para el useRef del audio */}
+      <Climax />
+
+      {/* 4. DONACIONES */}
+      <section className="min-h-screen flex items-center justify-center px-6 py-24" style={{ background: "#0D0D0F" }}>
+        <motion.div
+          variants={stagger}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: "-80px" }}
+          className="max-w-2xl w-full"
+        >
+          <motion.div variants={fadeUp} className="flex items-center gap-4 mb-8">
+            <span className="text-sm font-black tracking-widest" style={{ color: "#F20F62" }}>04 —</span>
+            <h2 className="font-black" style={{ fontSize: "clamp(1.8rem, 4vw, 2.8rem)", color: "#F2B988" }}>
+              Fondo de Inversión
+            </h2>
+          </motion.div>
+
+          <motion.div
+            variants={scaleIn}
+            className="rounded-2xl p-8 flex flex-col gap-6 relative overflow-hidden"
+            style={{ border: "1px solid #F2B98830", background: "#1A1A1A" }}
+          >
+            <div className="absolute top-0 right-0 text-[10rem] leading-none select-none pointer-events-none" style={{ opacity: 0.05 }}>
+              🚢
             </div>
-          </div>
 
-          {/* Mapa Incrustado */}
-          <div className="bg-zinc-900 h-64 md:h-full relative border-l-4 border-zinc-800">
-            {/* AQUÍ VA TU MAPA EXACTO */}
-            <iframe 
+            <div
+              className="inline-flex items-center gap-2 py-1 px-4 rounded-full self-start"
+              style={{ background: "#F2C87920", border: "1px solid #F2C87950" }}
+            >
+              <span className="text-lg">😂</span>
+              <span className="text-xs font-black uppercase tracking-widest" style={{ color: "#F2C879" }}>
+                Spoiler: es joda
+              </span>
+            </div>
+
+            <p className="text-lg leading-relaxed max-w-md relative z-10" style={{ color: "#F2B988" }}>
+              La comida va por mi cuenta, eso es en serio. Pero si de verdad querés regalarme algo, no voy a decir que no. Mi sueño es conocer Nueva York, así que cualquier aporte al fondo del Queen Mary 2 es bienvenido. 🚢
+            </p>
+
+            <div className="flex flex-col gap-2 relative z-10">
+              <p className="text-sm font-black uppercase tracking-widest" style={{ color: "#F2C879" }}>
+                Alias — por las dudas 😇
+              </p>
+              <motion.div
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="inline-block rounded-xl px-6 py-4 font-black tracking-widest text-2xl cursor-pointer select-all"
+                style={{
+                  background: "#0D0D0F",
+                  border: "2px solid #F20F62",
+                  color: "#F20F62",
+                  transition: "all 0.2s",
+                }}
+                onMouseEnter={e => {
+                  e.currentTarget.style.background = "#F20F62";
+                  e.currentTarget.style.color = "#F2C879";
+                }}
+                onMouseLeave={e => {
+                  e.currentTarget.style.background = "#0D0D0F";
+                  e.currentTarget.style.color = "#F20F62";
+                }}
+              >
+                marcemancini22
+              </motion.div>
+            </div>
+          </motion.div>
+        </motion.div>
+      </section>
+
+      {/* 5. TAROT */}
+      <section className="min-h-screen flex items-center justify-center px-6 py-24" style={{ background: "#F2C879" }}>
+        <motion.div
+          variants={stagger}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: "-80px" }}
+          className="max-w-2xl w-full flex flex-col gap-8"
+        >
+          <motion.div variants={fadeUp} className="flex items-center gap-4">
+            <span className="text-sm font-black tracking-widest" style={{ color: "#F20F62" }}>05 —</span>
+            <div>
+              <h2 className="font-black" style={{ fontSize: "clamp(1.8rem, 4vw, 2.8rem)", color: "#0D0D0F" }}>
+                El Oráculo del Escabio
+              </h2>
+              <p className="text-base mt-1" style={{ color: "#000000" }}>
+                Antes de venir, consultá tu destino para la noche.
+              </p>
+            </div>
+          </motion.div>
+
+          <motion.div variants={scaleIn} className="flex flex-col items-center gap-6">
+            <motion.img
+              src="/tarot.jpeg"
+              alt="Tarot"
+              className="w-36"
+              animate={{ rotate: [-3, 3, -3] }}
+              transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
+            />
+            <TarotFiesta />
+          </motion.div>
+        </motion.div>
+      </section>
+
+      {/* 6. LA FIESTA */}
+      <section className="min-h-screen flex items-center justify-center px-6 py-24" style={{ background: "#F2B988" }}>
+        <motion.div
+          variants={stagger}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: "-80px" }}
+          className="max-w-2xl w-full flex flex-col gap-10"
+        >
+          <motion.div variants={fadeUp} className="flex items-center gap-4">
+            <span className="text-sm font-black tracking-widest" style={{ color: "#F20F62" }}>06 —</span>
+            <div>
+              <h2 className="font-black" style={{ fontSize: "clamp(1.8rem, 4vw, 2.8rem)", color: "#0D0D0F" }}>
+                La <span style={{ color: "#F20F62" }}>Fiesta</span>
+              </h2>
+              <p className="text-base mt-1" style={{ color: "#000000" }}>
+                Te cuento cómo va a ser la noche.
+              </p>
+            </div>
+          </motion.div>
+
+          <motion.div variants={stagger} className="flex flex-col gap-3">
+            {[
+              { icon: "📅", label: "Cuándo", value: "Miércoles 25 de Febrero, 21:00 hs", accent: "#F20F62" },
+              { icon: "🍖", label: "Menú", value: "Pernil con salsas, empanadas y pizza a la parrilla. Sí, todo eso.", accent: "#A64D2D" },
+              { icon: "🧊", label: "¿Qué llevás?", value: "Solo tu bebida favorita. El hielo y la comida corren por mi cuenta.", accent: "#0D0D0F" },
+            ].map((item, i) => (
+              <motion.div
+                key={i}
+                variants={fadeUp}
+                whileHover={{ x: 6 }}
+                transition={{ duration: 0.2 }}
+                className="flex gap-5 items-start p-6 rounded-xl"
+                style={{ background: "#fff", borderLeft: `4px solid ${item.accent}` }}
+              >
+                <span className="text-3xl shrink-0">{item.icon}</span>
+                <div>
+                  <p className="text-sm font-black uppercase tracking-wider mb-1" style={{ color: item.accent }}>
+                    {item.label}
+                  </p>
+                  <p className="text-lg" style={{ color: "#0D0D0F" }}>{item.value}</p>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+
+          <motion.div
+            variants={scaleIn}
+            className="w-full rounded-2xl overflow-hidden"
+            style={{ height: "260px", border: "3px solid #F20F62" }}
+          >
+            <iframe
               src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d1246.9965090143623!2d-68.52639175916694!3d-31.484532462090254!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses-419!2sar!4v1771556542287!5m2!1ses-419!2sar"
-              className="absolute inset-0 w-full h-full filter grayscale hover:grayscale-0 transition-all duration-500"
-              style={{ border: 0 }} 
-              allowFullScreen="" 
+              className="w-full h-full transition-all duration-700"
+              style={{ border: 0 }}
+              allowFullScreen=""
               loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade">
-            </iframe>
-          </div>
-        </div>
-      </Section>
+              referrerPolicy="no-referrer-when-downgrade"
+            />
+          </motion.div>
+        </motion.div>
+      </section>
 
-      {/* 6. RSVP FORM */}
-      <Section className="bg-[#050505] border-t-4 border-[#FF00FF] pb-20">
-        <h2 className="text-4xl font-black mb-12 text-white uppercase tracking-wider">
-          <span className="text-[#FF69B4]">/</span> Confirmar <span className="text-[#FF00FF]">Asistencia</span>
-        </h2>
-        
-        <div className="w-full max-w-xl">
-          <RsvpForm />
-        </div>
-      </Section>
+      {/* 7. RSVP */}
+      <section className="min-h-screen flex items-center justify-center px-6 py-24" style={{ background: "#0D0D0F" }}>
+        <motion.div
+          variants={stagger}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: "-80px" }}
+          className="max-w-2xl w-full flex flex-col gap-8"
+        >
+          <motion.div variants={fadeUp} className="flex items-center gap-4">
+            <span className="text-sm font-black tracking-widest" style={{ color: "#F20F62" }}>07 —</span>
+            <div>
+              <h2 className="font-black" style={{ fontSize: "clamp(1.8rem, 4vw, 2.8rem)", color: "#F2B988" }}>
+                ¿Venís o no <span style={{ color: "#F20F62" }}>venís?</span>
+              </h2>
+              <p className="text-base mt-1" style={{ color: "#F2C879" }}>
+                Avisame así sé cuántas empanadas pedir. Es lo más importante.
+              </p>
+            </div>
+          </motion.div>
 
-      <footer className="p-8 bg-[#FF00FF] text-black text-center font-bold text-sm uppercase tracking-widest">
-        <p>© 2026 Marcela Mancini | Web Developer | Prohibido deployar los viernes</p>
+          <motion.div variants={scaleIn}>
+            <RsvpForm />
+          </motion.div>
+        </motion.div>
+      </section>
+
+      <footer
+        className="py-8 text-center text-sm font-black uppercase tracking-widest"
+        style={{ borderTop: "2px solid #F20F62", background: "#0D0D0F", color: "#F2C879" }}
+      >
+        Con amor y sin dormir desde 2022 😄 · Marcela 2026
       </footer>
     </main>
   );

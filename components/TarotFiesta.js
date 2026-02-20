@@ -1,44 +1,84 @@
-// components/TarotFiesta.jsx
 "use client";
 import { useState } from "react";
+import { motion } from "framer-motion"; // ← esto faltaba
 
 export default function TarotFiesta() {
   const [carta, setCarta] = useState("");
 
   const predicciones = [
-    "🃏 La Templanza: Hoy no tomás tanto porque manejás... (o eso decís ahora).",
-    "🃏 El Loco: Terminás cantando cumbia a las 5 AM con un vaso de fernet vacío.",
-    "🃏 El Ermitaño: A las 2 AM tirás la bomba de humo y te vas a dormir sin saludar.",
-    "🃏 La Estrella: Sos el alma de la fiesta. Vas a salir increíble en todas las fotos.",
-    "🃏 La Rueda de la Fortuna: Vas a mezclar vino, pernil y pizza... que la suerte te acompañe.",
-    "🃏 El Mago: Vas a hacer desaparecer la bandeja de empanadas vos solo/a."
+    "🃏 La Templanza: Decís que tomás poco... y a las 2 AM estás cantando a los gritos.",
+    "🃏 El Loco: Sos el primero en llegar y el último en irse. Siempre.",
+    "🃏 El Ermitaño: Aparecés, comés tres empanadas y desaparecés sin avisar.",
+    "🃏 La Estrella: Vas a salir increíble en todas las fotos. Esta es tu noche.",
+    "🃏 La Rueda de la Fortuna: Mezclás todo lo que hay en la mesa. Suerte, campeón.",
+    "🃏 El Mago: La bandeja de empanadas desaparece cada vez que estás cerca. Coincidencia.",
   ];
 
   const sacarCarta = () => {
-    // Hace un pequeño efecto de "cargando" antes de tirar la carta
     setCarta("Mezclando el mazo...");
     setTimeout(() => {
-      const random = Math.floor(Math.random() * predicciones.length);
-      setCarta(predicciones[random]);
+      setCarta(predicciones[Math.floor(Math.random() * predicciones.length)]);
     }, 800);
   };
 
   return (
-    <div className="bg-[#0a0a0a] border-2 border-[#FF00FF] p-6 rounded-none text-center shadow-[8px_8px_0px_#FF69B4] transition-all">
-      <h3 className="text-2xl font-[Montserrat] font-bold text-white mb-2">El Oráculo del Escabio</h3>
-      <p className="text-slate-400 mb-6 font-[Montserrat]">¿Qué te depara el destino para la noche del 25?</p>
-      
-      <button 
+    <div
+      className="w-full p-8 rounded-2xl text-center flex flex-col gap-6"
+      style={{ background: "#0D0D0F", border: "2px solid #F20F62" }}
+    >
+      <div>
+        <h3 className="text-2xl font-black" style={{ color: "#F2C879" }}>
+          El Oráculo del Escabio
+        </h3>
+        <p className="text-base mt-2" style={{ color: "#F2B988" }}>
+          ¿Qué te espera la noche del 25? El mazo no miente.
+        </p>
+      </div>
+
+      <motion.button
         onClick={sacarCarta}
-        className="bg-[#FF00FF] hover:bg-[#FF69B4] text-black font-[Montserrat] font-bold uppercase tracking-widest py-3 px-6 transition-colors border-2 border-transparent hover:border-white"
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.96 }}
+        className="self-center"
+        style={{
+          background: "#F20F62",
+          color: "#F2C879",
+          fontFamily: "Montserrat, sans-serif",
+          fontWeight: 900,
+          fontSize: "13px",
+          letterSpacing: "0.2em",
+          textTransform: "uppercase",
+          padding: "14px 32px",
+          borderRadius: "10px",
+          border: "none",
+          cursor: "pointer",
+        }}
+        onMouseEnter={e => {
+          e.currentTarget.style.background = "#F2C879";
+          e.currentTarget.style.color = "#F20F62";
+        }}
+        onMouseLeave={e => {
+          e.currentTarget.style.background = "#F20F62";
+          e.currentTarget.style.color = "#F2C879";
+        }}
       >
         Tirar las Cartas
-      </button>
+      </motion.button>
 
       {carta && (
-        <div className="mt-6 p-4 border border-[#FF69B4] bg-black text-[#FF69B4] font-[Space_Mono] text-lg font-bold min-h-[80px] flex items-center justify-center">
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4 }}
+          className="p-6 rounded-xl text-lg font-semibold leading-relaxed"
+          style={{
+            background: "#1A1A1A",
+            border: "1px solid #F2C87950",
+            color: "#F2C879",
+          }}
+        >
           {carta}
-        </div>
+        </motion.div>
       )}
     </div>
   );
