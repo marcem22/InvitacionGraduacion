@@ -212,74 +212,7 @@ export default function Home() {
       {/* 3. CLÍMAX */}
       <Climax />
 
-      {/* 4. DONACIONES */}
-      <section className="min-h-screen flex items-center justify-center px-6 py-24" style={{ background: "#0D0D0F" }}>
-        <motion.div
-          variants={stagger}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, margin: "-80px" }}
-          className="max-w-2xl w-full"
-        >
-          <motion.div variants={fadeUp} className="flex items-center gap-4 mb-8">
-            <span className="text-sm font-black tracking-widest" style={{ color: "#F20F62" }}>04 —</span>
-            <h2 className="font-black" style={{ fontSize: "clamp(1.8rem, 4vw, 2.8rem)", color: "#F2B988" }}>
-              Fondo de Inversión
-            </h2>
-          </motion.div>
-
-          <motion.div
-            variants={scaleIn}
-            className="rounded-2xl p-8 flex flex-col gap-6 relative overflow-hidden"
-            style={{ border: "1px solid #F2B98830", background: "#1A1A1A" }}
-          >
-            <div className="absolute top-0 right-0 text-[10rem] leading-none select-none pointer-events-none" style={{ opacity: 0.05 }}>
-              🚢
-            </div>
-
-            <div
-              className="inline-flex items-center gap-2 py-1 px-4 rounded-full self-start"
-              style={{ background: "#F2C87920", border: "1px solid #F2C87950" }}
-            >
-              <span className="text-lg">😂</span>
-              <span className="text-xs font-black uppercase tracking-widest" style={{ color: "#F2C879" }}>
-                Spoiler: es joda
-              </span>
-            </div>
-
-            <p className="text-lg leading-relaxed max-w-md relative z-10" style={{ color: "#F2B988" }}>
-              La comida va por mi cuenta, eso es en serio. Pero si de verdad querés regalarme algo, no voy a decir que no. Mi sueño es conocer Nueva York, así que cualquier aporte al fondo del Queen Mary 2 es bienvenido. 🚢
-            </p>
-
-            <div className="flex flex-col gap-2 relative z-10">
-              <p className="text-sm font-black uppercase tracking-widest" style={{ color: "#F2C879" }}>
-                Alias — por las dudas 😇
-              </p>
-              <motion.div
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                className="inline-block rounded-xl px-6 py-4 font-black tracking-widest text-2xl cursor-pointer select-all"
-                style={{
-                  background: "#0D0D0F",
-                  border: "2px solid #F20F62",
-                  color: "#F20F62",
-                  transition: "all 0.2s",
-                }}
-                onMouseEnter={e => {
-                  e.currentTarget.style.background = "#F20F62";
-                  e.currentTarget.style.color = "#F2C879";
-                }}
-                onMouseLeave={e => {
-                  e.currentTarget.style.background = "#0D0D0F";
-                  e.currentTarget.style.color = "#F20F62";
-                }}
-              >
-                marcemancini22
-              </motion.div>
-            </div>
-          </motion.div>
-        </motion.div>
-      </section>
+   
 
       {/* 5. TAROT */}
       <section className="min-h-screen flex items-center justify-center px-6 py-24" style={{ background: "#F2C879" }}>
