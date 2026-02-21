@@ -292,13 +292,13 @@ export default function Home() {
           </motion.div>
 
           {/* MAPA */}
-          <motion.div
+     <motion.div
   variants={scaleIn}
   className="w-full rounded-2xl overflow-hidden"
   style={{ height: "260px", border: "3px solid #F20F62" }}
 >
   <a
-    href="https://www.google.com/maps?q=-31.48515976699302,-68.52760266907705"
+    href="https://maps.app.goo.gl/nDfSfU18DLQuBZCY8"
     target="_blank"
     rel="noopener noreferrer"
     className="w-full h-full flex flex-col items-center justify-center gap-4"
