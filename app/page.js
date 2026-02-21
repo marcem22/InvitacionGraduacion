@@ -292,7 +292,7 @@ export default function Home() {
           </motion.div>
 
           {/* MAPA */}
-          <motion.div
+       <motion.div
   variants={scaleIn}
   className="w-full rounded-2xl overflow-hidden"
   style={{ height: "260px", border: "3px solid #F20F62" }}
