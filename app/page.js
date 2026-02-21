@@ -307,6 +307,7 @@ export default function Home() {
               referrerPolicy="no-referrer-when-downgrade"
             />
           </motion.div>
+        </motion.div>
       </section>
 
       {/* 7. RSVP */}
