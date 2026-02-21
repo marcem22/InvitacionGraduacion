@@ -297,23 +297,16 @@ export default function Home() {
             className="w-full rounded-2xl overflow-hidden"
             style={{ height: "260px", border: "3px solid #F20F62" }}
           >
-            <a
-              href="https://www.google.com/maps?q=-31.48515976699302,-68.52760266907705"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full h-full flex flex-col items-center justify-center gap-4"
-              style={{ background: "#1A1A1A", display: "flex", textDecoration: "none", height: "100%" }}
-            >
-              <span style={{ fontSize: "48px" }}>📍</span>
-              <p className="font-black uppercase tracking-widest text-sm" style={{ color: "#F2C879" }}>
-                Ver ubicación en Google Maps
-              </p>
-              <p className="text-xs font-bold" style={{ color: "#F2B98880" }}>
-                Tocá para abrir el mapa
-              </p>
-            </a>
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d6804.888910973316!2d-68.52666019999998!3d-31.48446500000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses-419!2sar!4v1771634129725!5m2!1ses-419!2sar"
+              width="100%"
+              height="100%"
+              style={{ border: 0, display: "block" }}
+              allowFullScreen=""
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            />
           </motion.div>
-        </motion.div>
       </section>
 
       {/* 7. RSVP */}
